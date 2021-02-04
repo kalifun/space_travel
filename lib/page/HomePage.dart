@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:space_travel/page/GradienAppBar.dart';
+import 'package:space_travel/page/Page.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: new Column(
         children: <Widget>[
-          new GradienAppBar("Space Travel")
+          new GradienAppBar("Space Travel"),
+          new HomePageBody(),
+          new HomePageBody()
         ],
       ),
     );
