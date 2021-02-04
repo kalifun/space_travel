@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:space_travel/model/Planet.dart';
 
 class PlanetRow extends StatelessWidget {
+  final Planet planet;
+
+  PlanetRow(this.planet);
+
   @override
   Widget build(BuildContext context) {
+    final baseTextStyle = const TextStyle(
+      fontFamily: 'Poppins'
+    );
+
+    final headerTextStyle = baseTextStyle.copyWith(
+      color: const Colors.white,
+      fontSize: 18.0,
+      fontWeight: FontWeight.w600
+    );
+
+    final regularTextStyle = baseTextStyle.copyWith(
+      color: const Color(0xffb6b2df),
+      fontSize: 9.0,
+      fontWeight: FontWeight.w400
+    );
+
+    final subHeaderTextStyle = regularTextStyle.copyWith(
+        fontSize: 12.0
+    );
     return new Container(
       margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       child: new Stack(
@@ -19,7 +43,7 @@ class PlanetRow extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 16.0),
       alignment: FractionalOffset.centerLeft,
       child: new Image(
-        image: new AssetImage("assets/img/mars.png"),
+        image: new AssetImage(planet.image),
         height: 92.0,
         width: 92.0,
       ),
