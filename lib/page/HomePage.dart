@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
       body: new Column(
         children: <Widget>[
           new GradienAppBar("Space Travel"),
-          new HomePageBody(),
           new HomePageBody()
         ],
       ),
