@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space_travel/model/Planet.dart';
+import 'package:space_travel/model/StyleValue.dart';
 
 class PlanetRow extends StatelessWidget {
   final Planet planet;
@@ -8,25 +9,6 @@ class PlanetRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseTextStyle = const TextStyle(
-      fontFamily: 'Poppins'
-    );
-
-    final headerTextStyle = baseTextStyle.copyWith(
-      color: const Colors.white,
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600
-    );
-
-    final regularTextStyle = baseTextStyle.copyWith(
-      color: const Color(0xffb6b2df),
-      fontSize: 9.0,
-      fontWeight: FontWeight.w400
-    );
-
-    final subHeaderTextStyle = regularTextStyle.copyWith(
-        fontSize: 12.0
-    );
     return new Container(
       margin: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       child: new Stack(
@@ -52,6 +34,7 @@ class PlanetRow extends StatelessWidget {
 
   Widget _planetCard() {
     return Container(
+      child: _planetCardContent(),
       height: 124.0,
       margin: EdgeInsets.only(left: 64.0),
       decoration: new BoxDecoration(
@@ -65,6 +48,67 @@ class PlanetRow extends StatelessWidget {
               offset: new Offset(0.0, 10.0),
             )
           ]),
+    );
+  }
+
+  // 具体内容
+  Widget _planetCardContent() {
+    return Container(
+      // 调整未知
+      margin: EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      // 限制子组件的宽高，随着子元素扩展
+      constraints: new BoxConstraints.expand(),
+      child: new Column(
+        // 对齐方式
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new Container(
+            height: 4.0,
+          ),
+          new Text(
+            planet.name,
+            style: headerTextStyle,
+          ),
+          new Container(
+            height: 10.0,
+          ),
+          new Text(
+            planet.location,
+            style: subHeaderTextStyle,
+          ),
+          new Container(
+              margin: new EdgeInsets.symmetric(vertical: 8.0),
+              height: 2.0,
+              width: 18.0,
+              color: new Color(0xff00c6ff)),
+          new Row(
+            children: <Widget>[
+              new Expanded(
+                  child: _planetValue(
+                      value: planet.distance,
+                      image: "assets/img/ic_distance.png")),
+              new Expanded(
+                  child: _planetValue(
+                      value: planet.gravity,
+                      image: "assets/img/ic_gravity.png"))
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _planetValue({String value, String image}) {
+    return new Row(
+      children: <Widget>[
+        new Container(width: 24.0),
+        new Image.asset(image, height: 12.0),
+        new Container(width: 8.0),
+        new Text(
+          value,
+          style: regularTextStyle,
+        ),
+      ],
     );
   }
 }
